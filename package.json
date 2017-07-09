@@ -1,0 +1,27 @@
+{
+  "name": "scrapify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "mocha test",
+    "lint": "eslint ."
+  },
+  "author": "markreid",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.0.1",
+    "cheerio": "^1.0.0-rc.2",
+    "dotenv-safe": "^4.0.4",
+    "node-fetch": "^1.7.1",
+    "spotify-web-api-node": "^2.4.0"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^3.4.2"
+  }
+}
