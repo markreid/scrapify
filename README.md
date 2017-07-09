@@ -29,6 +29,7 @@ To fine-tune our search terms, we can add multiple selectors (comma-separated) t
 ```
 This will find the artist name and album title and merge them together, so our Spotify search is a little more specific.
 
+![screenshot](docs/screenshot.gif)
 
 ### Credits
 
