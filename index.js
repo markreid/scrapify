@@ -15,7 +15,7 @@ const { log } = util;
 const { SPOTIFY_USERNAME } = process.env;
 
 async function doSpotifyParts(options) {
-  const { searchTerms } = options;
+  const { albumNames } = options;
 
   if (options.refreshToken) {
     process.stdout.write('Using Refresh Token to request a new Spotify Access Token... ');
@@ -28,7 +28,7 @@ async function doSpotifyParts(options) {
   }
   const playlistId = options.playlistId || await spotify.createPlaylist(options.playlistName);
 
-  const albumTracks = await spotify.searchManyAlbums(searchTerms);
+  const albumTracks = await spotify.searchManyAlbums(albumNames);
   const totalAlbums = albumTracks.length;
   const foundAlbums = albumTracks.filter(tracks => tracks.length).length;
   const tracks = util.flatten(albumTracks);
@@ -82,8 +82,12 @@ async function doParseParts(options) {
     return process.exit(1);
   }
   log(chalk.green(`Found ${searchTerms.length} search terms:`));
+  let albumNames = [];
   searchTerms.forEach((searchTerm) => {
-    log(`  -  ${chalk.blue(searchTerm)}`);
+    if(searchTerm) {
+      log(`  -  ${chalk.blue(searchTerm)}`);
+      albumNames.push(searchTerm);
+    }
   });
 
   // ask user to confirm that search terms look right
@@ -98,7 +102,7 @@ async function doParseParts(options) {
 
   // add searchTerms to the options object and pass it on
   return Object.assign({}, options, {
-    searchTerms,
+    albumNames,
   });
 }
 
