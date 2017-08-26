@@ -75,7 +75,8 @@ async function doParseParts(options) {
   process.stdout.write(chalk.green('Success!\n'));
 
   log('Scraping for search terms...');
-  const searchTerms = util.scrapeSearchTerms(page, options.selector.split(','));
+  const searchTerms = util.scrapeSearchTerms(page, options.selector.split(','))
+    .map(searchString => util.cleanSearchString(searchString));
 
   if (!searchTerms.length) {
     log(chalk.red('Found zero search terms using your query selectors.'));

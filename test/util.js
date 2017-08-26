@@ -51,4 +51,13 @@ describe('lib/util', () => {
       .to.deep.equal([1, 2, 3, 4]);
     });
   });
+
+  describe('cleanSearchString', () => {
+    it('removes unwanted text from search strings', () => {
+      expect(util.cleanSearchString('foo and bar')).to.equal('foo bar');
+      expect(util.cleanSearchString('foo AND bar')).to.equal('foo bar');
+      expect(util.cleanSearchString('enter sandman')).to.equal('enter sandman');
+      expect(util.cleanSearchString('And you will know us by the trail of dead')).to.equal('And you will know us by the trail of dead');
+    });
+  });
 });
